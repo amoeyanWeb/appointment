@@ -12,7 +12,7 @@ mongoose
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.log("❌ MongoDB Error:", err));
 
-app.use("/api/appointments", require("./routes/appointments"));
+app.use("/api/appointment", require("./routes/appointment"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
