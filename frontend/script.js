@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/appointments";
+const API_URL = "https://appointment-hv3n.onrender.com/api/appointments";
 let selectedDate = null;
 let selectedSlot = null;
 let currentUser = null;
