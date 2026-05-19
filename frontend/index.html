@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سیستم نوبت‌گیری</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- مدال اولیه -->
+    <div id="initial-modal" class="modal">
+      <div class="modal-content">
+        <h2>ورود به سیستم</h2>
+        <p>لطفاً اطلاعات خود را وارد کنید</p>
+
+        <input type="text" id="modal-first-name" placeholder="نام" />
+        <input type="text" id="modal-last-name" placeholder="نام خانوادگی" />
+        <input type="tel" id="modal-phone" placeholder="شماره تلفن" />
+        <input type="email" id="modal-email" placeholder="ایمیل" />
+
+        <button onclick="checkUserType()">ادامه</button>
+      </div>
+    </div>
+
+    <!-- مدال پسورد ادمین -->
+    <div id="admin-pass-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>ورود به پنل ادمین</h3>
+        <input type="password" id="admin-password" placeholder="پسورد ادمین" />
+        <button onclick="verifyAdminPassword()">ورود</button>
+        <button onclick="closeAdminPassModal()">بازگشت</button>
+      </div>
+    </div>
+
+    <!-- محتوای اصلی کاربر -->
+    <div class="container hidden" id="main-content">
+      <h1>رزرو نوبت ملاقات</h1>
+
+      <div id="calendar"></div>
+
+      <div id="selected-date" class="hidden">
+        <h2>انتخاب شده: <span id="date-text"></span></h2>
+        <p id="day-name"></p>
+      </div>
+
+      <div id="time-slots" class="hidden">
+        <h3>انتخاب ساعت (۲ ساعته)</h3>
+        <div class="slots" id="slots-container"></div>
+      </div>
+
+      <!-- دکمه نهایی ثبت -->
+      <div id="form" class="hidden">
+        <button class="final-submit-btn" onclick="submitAppointment()">
+          ✅ تایید و ثبت قرار ملاقات
+        </button>
+      </div>
+    </div>
+
+    <!-- پنل ادمین -->
+    <div id="admin-panel" class="hidden">
+      <div class="admin-header">
+        <h2>پنل مدیریت</h2>
+        <div>
+          <button onclick="loadAppointments('future')">قرارهای آتی</button>
+          <button onclick="loadAppointments('past')">تاریخچه</button>
+          <button onclick="changePasswordModal()">تغییر پسورد</button>
+          <button onclick="logoutAdmin()">خروج</button>
+        </div>
+      </div>
+      <input type="date" id="filter-date" onchange="filterByDate()" />
+      <table id="appointments-table">
+        <thead>
+          <tr>
+            <th>نام و نام خانوادگی</th>
+            <th>تلفن</th>
+            <th>ایمیل</th>
+            <th>تاریخ</th>
+            <th>ساعت</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- مدال تغییر پسورد -->
+    <div id="password-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>تغییر پسورد ادمین</h3>
+        <input type="password" id="current-pass" placeholder="پسورد فعلی" />
+        <input type="password" id="new-pass" placeholder="پسورد جدید" />
+        <input
+          type="password"
+          id="new-pass-confirm"
+          placeholder="تکرار پسورد جدید"
+        />
+        <br /><br />
+        <button onclick="changeAdminPassword()">تغییر پسورد</button>
+        <button onclick="closeModal()">بستن</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
